@@ -17,6 +17,7 @@
 #define MAIN_WINDOW_H
 
 #include <QtGui>
+#include <QColor>
 #include "ui_main_window.h"
 
 /**
@@ -28,9 +29,14 @@ class MainWindow : public QMainWindow
 
   public:
     MainWindow(QMainWindow* parent = 0);
+  public slots:
+    void setPropColor();
+    void setPropColorText();
 
   private:
     Ui::MainWindow ui;
+    void keyPressEvent(QKeyEvent *k) override;
+    void keyReleaseEvent(QKeyEvent *k) override;
 };
 
 #endif

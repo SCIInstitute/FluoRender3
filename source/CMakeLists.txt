@@ -45,8 +45,8 @@ add_executable(${CMAKE_PROJECT_NAME} WIN32
   ${RESOURCE_FILES}
   ${WINDOWS_RES_FILE}
 )
-target_link_libraries(${CMAKE_PROJECT_NAME}
-  Qt5::Widgets
+target_link_libraries(${CMAKE_PROJECT_NAME} 
+  Qt5::Widgets 
 )
 
 if (UNIX)

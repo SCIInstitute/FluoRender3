@@ -1,5 +1,42 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
+<RCC>
   <qresource>
+    <file>icon2.ico</file>
+    <file>Actions-application-exit-icon.png</file>
+    <file>Icon_32.png</file>
+    <file>icon_about.png</file>
+    <file>icon_check_updates.png</file>
+    <file>icon_edit.png</file>
+    <file>icon_facebook.png</file>
+    <file>icon_new_view.png</file>
+    <file>icon_open_mesh.png</file>
+    <file>icon_open_volume.png</file>
+    <file>icon_show_hide_ui.png</file>
+    <file>icon_twitter.png</file>
+    <file>listicon_addgroup.png</file>
+    <file>listicon_addmgroup.png</file>
+    <file>listicon_addruler.png</file>
+    <file>listicon_bake.png</file>
+    <file>listicon_brushappend.png</file>
+    <file>listicon_brushclear.png</file>
+    <file>listicon_brushcreate.png</file>
+    <file>listicon_brushdesel.png</file>
+    <file>listicon_brushdiffuse.png</file>
+    <file>listicon_brusherase.png</file>
+    <file>listicon_delall.png</file>
+    <file>listicon_delete.png</file>
+    <file>listicon_locator.png</file>
+    <file>listicon_qmark.png</file>
+    <file>listicon_rename.png</file>
+    <file>listicon_ruleredit.png</file>
+    <file>listicon_save.png</file>
+    <file>listicon_toggle.png</file>
+    <file>listicon_view.png</file>
+    <file>logo.png</file>
+    <file>logo_snow.png</file>
+    <file>open-file-icon.png</file>
+    <file>Record-Normal-Red-icon.png</file>
+    <file>Save-icon.png</file>
+    <file>settings-icon.png</file>
+    <file>tape-measure-icon.png</file>
   </qresource>
 </RCC>

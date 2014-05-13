@@ -14,7 +14,7 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ###
 
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 2.8.10)
 
 # Default configuration values. These must be before the project command or
 # they won't work in Windows.
@@ -30,9 +30,9 @@ if (WIN32 AND NOT CMAKE_INSTALL_PREFIX)
   set(CMAKE_INSTALL_PREFIX dist CACHE STRING "Install path prefix.")
 endif()
 
-project(example)
-set(PROJECT_LONGNAME "Example")
-set(PROJECT_VERSION "1.0.0")
+project(FluoRender)
+set(PROJECT_LONGNAME "FluoRender")
+set(PROJECT_VERSION "3.0.0")
 
 # Global CMake options
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -42,9 +42,17 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Test REQUIRED)
 
+#headers
+
+include_directories(${Qt5Widgets_INCLUDE_DIRS})
+include_directories(${Qt5Test_INCLUDE_DIRS})
+
+#defines
+add_definitions(${Qt5Widgets_DEFINITIONS})
+
 if (NOT MSVC)
   # Enable the C++11 standard
-  set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} -std=c++11 -fPIC")
 endif()
 
 # Testing configuration
