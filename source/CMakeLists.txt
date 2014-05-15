@@ -13,9 +13,10 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ###
+set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/defines.h.cmake
-               ${CMAKE_CURRENT_BINARY_DIR}/defines.h)
+   ${CMAKE_CURRENT_BINARY_DIR}/defines.h)
 
 file(GLOB_RECURSE UI_FILES *.ui)
 file(GLOB_RECURSE CODE_FILES *.cpp)
@@ -23,36 +24,31 @@ file(GLOB_RECURSE CODE_FILES *.cpp)
 qt5_wrap_ui(UI_HEADERS ${UI_FILES})
 qt5_add_resources(RESOURCE_FILES ../resources/resources.qrc)
 
-# Windows application icon
-if (WIN32)
-  set(WINDOWS_RES_FILE ${CMAKE_CURRENT_BINARY_DIR}/resources.obj)
-  if (MSVC)
-    add_custom_command(OUTPUT ${WINDOWS_RES_FILE}
-      COMMAND rc.exe /fo ${WINDOWS_RES_FILE} resources.rc
-      WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/win
-    )
-  else()
-    add_custom_command(OUTPUT ${WINDOWS_RES_FILE}
-      COMMAND windres.exe resources.rc ${WINDOWS_RES_FILE}
-      WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/win
-    )
-  endif()
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+   # Mac OS X
+   if(NOT OPEN_GL_HEADER_LOC)
+      add_definitions(-DOPEN_GL_HEADER_LOC=<OpenGL/gl.h>)
+   endif()
+   if(NOT OPEN_GLU_HEADER_LOC)
+      add_definitions(-DOPEN_GLU_HEADER_LOC=<OpenGL/glu.h>)
+   endif()
+   add_definitions(-D_DARWIN)
+   include(BundleUtilities)
+   SET( MACOSX_BUNDLE_ICON_FILE ${ICON_FILE_PATH} )
+   SET_SOURCE_FILES_PROPERTIES(${ICON_FILE_PATH} PROPERTIES
+      MACOSX_BUNDLE_LOCATION Resources)
+   add_executable(${CMAKE_PROJECT_NAME} MACOSX_BUNDLE
+      ${UI_HEADERS}
+      ${CODE_FILES}
+      ${RESOURCE_FILES}
+      )
+elseif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+   add_executable(${CMAKE_PROJECT_NAME} WIN32
+      ${UI_HEADERS}
+      ${CODE_FILES}
+      ${RESOURCE_FILES}
+      )
 endif()
-
-add_executable(${CMAKE_PROJECT_NAME} WIN32
-  ${UI_HEADERS}
-  ${CODE_FILES}
-  ${RESOURCE_FILES}
-  ${WINDOWS_RES_FILE}
-)
-target_link_libraries(${CMAKE_PROJECT_NAME} 
-  Qt5::Widgets 
-)
-
-if (UNIX)
-  install(TARGETS ${CMAKE_PROJECT_NAME}
-          RUNTIME DESTINATION bin)
-elseif (WIN32)
-  install(TARGETS ${CMAKE_PROJECT_NAME}
-          DESTINATION .)
-endif()
+target_link_libraries(${CMAKE_PROJECT_NAME}
+   Qt5::Widgets
+   )

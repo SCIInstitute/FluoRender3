@@ -20,16 +20,12 @@ cmake_minimum_required(VERSION 2.8.10)
 # they won't work in Windows.
 # If no build type is specified, default to "Release"
 if (NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release CACHE STRING
+   set(CMAKE_BUILD_TYPE Release CACHE STRING
       "None Debug Release RelWithDebInfo MinSizeRel"
       FORCE)
 endif()
-# Install to "dist" directory in Windows for testing and as a staging directory
-# for the installer.
-if (WIN32 AND NOT CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX dist CACHE STRING "Install path prefix.")
-endif()
 
+#project info
 project(FluoRender)
 set(PROJECT_LONGNAME "FluoRender")
 set(PROJECT_VERSION "3.0.0")
@@ -40,28 +36,21 @@ set(CMAKE_AUTOMOC ON)
 
 # Configure Qt
 find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Test REQUIRED)
 
 #headers
-
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
-include_directories(${Qt5Test_INCLUDE_DIRS})
 
 #defines
 add_definitions(${Qt5Widgets_DEFINITIONS})
 
-if (NOT MSVC)
-  # Enable the C++11 standard
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} -std=c++11 -fPIC")
-endif()
+#output directories
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# Testing configuration
-enable_testing()
-set(TEST_LINK_LIBRARIES Qt5::Test)
+if (NOT MSVC)
+   # Enable the C++11 standard
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} -std=c++11 -fPIC")
+endif()
 
 add_subdirectory(source)
-add_subdirectory(tests)
-
-if (WIN32)
-  add_subdirectory(win)
-endif()
