@@ -51,4 +51,8 @@ elseif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 endif()
 target_link_libraries(${CMAKE_PROJECT_NAME}
    Qt5::Widgets
+   Qt5::OpenGL
+   Qt5::Core
+   Qt5::Gui
+   ${OPENGL_LIBRARIES}
    )

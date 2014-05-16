@@ -18,7 +18,11 @@
 
 #include <QtGui>
 #include <QColor>
+#include <QMdiSubWindow>
+#include <vector>
 #include "ui_main_window.h"
+#include "FLGLWidget.h"
+#include "FLGLWindow.h"
 
 /**
  * Main window class for the application
@@ -29,14 +33,18 @@ class MainWindow : public QMainWindow
 
   public:
     MainWindow(QMainWindow* parent = 0);
+    virtual ~MainWindow();
   public slots:
     void setPropColor();
     void setPropColorText();
+    void destroyWindow(QObject* obj = 0);
 
   private:
-    Ui::MainWindow ui;
     void keyPressEvent(QKeyEvent *k) override;
     void keyReleaseEvent(QKeyEvent *k) override;
+
+    Ui::MainWindow ui_;
+    std::vector<QMdiSubWindow*> glWindows_;
 };
 
 #endif

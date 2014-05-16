@@ -56,16 +56,18 @@ QDockWidget::float-button {
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">QWidget {
-     border-style: none; }</string>
+	padding: 0px;
+	margin: 0px;
+}</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QMdiArea" name="mdiArea">
-      <property name="minimumSize">
-       <size>
-        <width>500</width>
-        <height>0</height>
-       </size>
+      <property name="styleSheet">
+       <string notr="true">QMdiArea {
+	padding: 0px;
+	margin: 0px;
+}</string>
       </property>
      </widget>
     </item>
@@ -121,14 +123,14 @@ QDockWidget::float-button {
   <widget class="QDockWidget" name="datasetWidget">
    <property name="minimumSize">
     <size>
-     <width>0</width>
-     <height>0</height>
+     <width>232</width>
+     <height>196</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>524287</width>
-     <height>16777215</height>
+     <height>524287</height>
     </size>
    </property>
    <property name="styleSheet">
@@ -364,8 +366,8 @@ QDockWidget::float-button {
   <widget class="QDockWidget" name="workspaceWidget">
    <property name="minimumSize">
     <size>
-     <width>0</width>
-     <height>0</height>
+     <width>358</width>
+     <height>196</height>
     </size>
    </property>
    <property name="maximumSize">
