@@ -7,6 +7,8 @@
 #define FLGLWIDGET_H
 
 #include <QGLWidget>
+#include <QGLBuffer>
+#include <QGLShaderProgram>
 
 class QtLogo;
 
@@ -18,7 +20,7 @@ class FLGLWidget : public QGLWidget {
    Q_OBJECT
 
    public:
-      FLGLWidget(QWidget * parent = 0);
+      FLGLWidget(const QGLFormat& format, QWidget * parent = 0);
       virtual ~FLGLWidget();
       QSize minimumSizeHint() const;
       QSize sizeHint() const;
@@ -37,13 +39,17 @@ signals:
       void resizeGL(int width, int height);
       void mousePressEvent(QMouseEvent *event);
       void mouseMoveEvent(QMouseEvent *event);
-   private:
+private:
       QtLogo *logo;
       int xRot;
       int yRot;
       int zRot;
+      int w_, h_;
       QPoint lastPos;
-      QColor qtGreen;
-      QColor qtPurple;
+    QVector4D points_[3];
+    QVector4D pts_[3];
+    
+    QGLShaderProgram m_shader;
+    QGLBuffer m_vertexBuffer;
 };
 #endif

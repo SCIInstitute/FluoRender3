@@ -38,8 +38,8 @@
  **
  ****************************************************************************/
 
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef FLGLWINDOW_H
+#define FLGLWINDOW_H
 
 #include <QWidget>
 #include <QMdiArea>

@@ -76,7 +76,8 @@ void MainWindow::keyPressEvent(QKeyEvent *k) {
          sw->setWidget(window);
          sw->setAttribute(Qt::WA_DeleteOnClose);
          this->ui_.mdiArea->addSubWindow(sw);
-         sw->show();
+          sw->show();
+          this->ui_.mdiArea->tileSubWindows ();
          //glWindows_.push_back(sw);
          //QObject::connect(sw,SIGNAL(destroyed(QObject*)),this,SLOT(destroyWindow(QObject*)));
       }

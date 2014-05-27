@@ -46,7 +46,11 @@
 //! [0]
 FLGLWindow::FLGLWindow(QWidget * parent) : QWidget(parent), mdi_(parent)
 {
-    glWidget = new FLGLWidget;
+    QGLFormat glFormat;
+    glFormat.setVersion( 4, 1 );
+    glFormat.setProfile( QGLFormat::CoreProfile ); // Requires >=Qt-4.8.0
+    glFormat.setSampleBuffers( true );
+    glWidget = new FLGLWidget(glFormat);
 
     xSlider = createSlider();
     ySlider = createSlider();
@@ -58,9 +62,9 @@ FLGLWindow::FLGLWindow(QWidget * parent) : QWidget(parent), mdi_(parent)
     connect(glWidget, SIGNAL(yRotationChanged(int)), ySlider, SLOT(setValue(int)));
     connect(zSlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setZRotation(int)));
     connect(glWidget, SIGNAL(zRotationChanged(int)), zSlider, SLOT(setValue(int)));
-//! [0]
-
-//! [1]
+////! [0]
+//
+////! [1]
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addWidget(glWidget);
     mainLayout->addWidget(xSlider);
@@ -68,19 +72,14 @@ FLGLWindow::FLGLWindow(QWidget * parent) : QWidget(parent), mdi_(parent)
     mainLayout->addWidget(zSlider);
     setLayout(mainLayout);
 
-    xSlider->setValue(15 * 16);
-    ySlider->setValue(345 * 16);
-    zSlider->setValue(0 * 16);
+    xSlider->setValue(0);
+    ySlider->setValue(0);
+    zSlider->setValue(0);
     setWindowTitle(tr("Hello GL"));
 }
 
 //! [1]
-FLGLWindow::~FLGLWindow() {
-   delete glWidget;
-   delete xSlider;
-   delete ySlider;
-   delete zSlider;
-}
+FLGLWindow::~FLGLWindow() {}
 
 //! [2]
 QSlider *FLGLWindow::createSlider()
