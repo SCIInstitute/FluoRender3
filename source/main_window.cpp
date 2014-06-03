@@ -26,7 +26,7 @@
 MainWindow::MainWindow(QMainWindow* parent)
 : QMainWindow(parent)
 {
-   this->ui_.setupUi(this);
+    this->ui_.setupUi(this);
 }
 
 MainWindow::~MainWindow() {
