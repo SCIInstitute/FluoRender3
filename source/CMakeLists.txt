@@ -42,7 +42,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       ${CODE_FILES}
       ${RESOURCE_FILES}
       )
-elseif(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
    add_executable(${CMAKE_PROJECT_NAME} WIN32
       ${UI_HEADERS}
       ${CODE_FILES}

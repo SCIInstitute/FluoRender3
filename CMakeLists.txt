@@ -33,6 +33,10 @@ set(PROJECT_VERSION "3.0.0")
 # Global CMake options
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+   cmake_policy(SET CMP0020 OLD)
+endif()
+
 
 # Required packages
 find_package(OpenGL REQUIRED)
