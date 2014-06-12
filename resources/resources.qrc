@@ -1,5 +1,10 @@
 <RCC>
   <qresource>
+    <file>Center.png</file>
+    <file>crosshairs.png</file>
+    <file>ratio.png</file>
+    <file>refresh.png</file>
+    <file>camera.png</file>
     <file>icon2.ico</file>
     <file>Actions-application-exit-icon.png</file>
     <file>Icon_32.png</file>

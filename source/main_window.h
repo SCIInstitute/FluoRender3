@@ -35,13 +35,37 @@ class MainWindow : public QMainWindow
     MainWindow(QMainWindow* parent = 0);
     virtual ~MainWindow();
   public slots:
+    void setBackgroundColor();
     void setPropColor();
     void setPropColorText();
     void destroyWindow(QObject* obj = 0);
+    void resetRotations();
+    void x1ClipSlider(int n);
+    void x2ClipSlider(int n);
+    void y1ClipSlider(int n);
+    void y2ClipSlider(int n);
+    void z1ClipSlider(int n);
+    void z2ClipSlider(int n);
+    void xClipLinkToggle(bool b);
+    void yClipLinkToggle(bool b);
+    void zClipLinkToggle(bool b);
+    void resetClipping();
+    void resetClippingRotation();
+    void setClippingXY();
+    void setClippingXZ();
+    void setClippingYZ();
+    void redSliders();
+    void greenSliders();
+    void blueSliders();
+    void rotations45();
+
 
   private:
     void keyPressEvent(QKeyEvent *k) override;
     void keyReleaseEvent(QKeyEvent *k) override;
+    
+    int x1Clip_, x2Clip_, y1Clip_, y2Clip_, z1Clip_, z2Clip_,
+        xClipLinkVal_, yClipLinkVal_, zClipLinkVal_;
 
     Ui::MainWindow ui_;
     std::vector<QMdiSubWindow*> glWindows_;
